@@ -112,11 +112,18 @@ public class Calculator extends Activity implements OnClickListener {
 
         } else {
             // operation was pressed
-            if (userIsInTheMiddleOfTypingANumber) {
+
+            if(buttonPressed.equalsIgnoreCase("del")) {
+                mLogic.setOperand(Double.parseDouble(mCalculatorDisplay.getText().toString()));
+                mLogic.performOperation(buttonPressed);
+                mCalculatorDisplay.setText(df.format(mLogic.getResult()));
+            }
+            else if (userIsInTheMiddleOfTypingANumber) {
 
                 mLogic.setOperand(Double.parseDouble(mCalculatorDisplay.getText().toString()));
                 userIsInTheMiddleOfTypingANumber = false;
             }
+
 
             mLogic.performOperation(buttonPressed);
             mCalculatorDisplay.setText(df.format(mLogic.getResult()));
